@@ -17,12 +17,28 @@ class SingleStateMap extends React.Component {
   }
 }
 
+
+class CityDetails extends React.Component {
+  render() {
+    const { city, onClose } = this.props;
+
+    return (
+      <div>
+        <h1>{city.name}</h1>
+        <p>Days spent: {city.days}</p>
+        <button onClick={onClose}>Close</button>
+      </div>
+    );
+  }
+}
+
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedState: null,
       imageUrl: '',
+      selectedCity: null, // Add a new state for selected city
     };
   }
 
@@ -36,12 +52,20 @@ export default class Map extends React.Component {
     this.setState({ selectedState: state, imageUrl: imageUrls[state.properties.NAME] });
   };
 
+  handleCityClick = (city) => {
+    this.setState({ selectedCity: city });
+  };
+
+  handleCloseCityDetails = () => {
+    this.setState({ selectedCity: null });
+  };
+
   handleMapClose = () => {
     this.setState({ selectedState: null, imageUrl: '' });
   };
 
   render() {
-    const { selectedState, imageUrl } = this.state;
+    const { selectedState, imageUrl, selectedCity } = this.state;
 
     const filteredFeatures = geojson.features.filter(
       (feature) =>
@@ -49,6 +73,7 @@ export default class Map extends React.Component {
         feature.properties.NAME !== 'Hawaii' &&
         feature.properties.NAME !== 'Puerto Rico'
     );
+
 
     const width = 1000;
     const height = width * 0.7;
@@ -62,6 +87,29 @@ export default class Map extends React.Component {
       display: 'block',
       margin: 'auto',
     };
+
+    const cities = [
+      { name: 'Glendale', coords: [-112.1859, 33.5387], days: 2 },
+      { name: 'Las Vegas', coords: [-115.1398, 36.1699], days: 2 },
+      { name: 'Arlington', coords: [-97.1091, 32.7357], days: 3 },
+      { name: 'Tampa', coords: [-82.4572, 27.9506], days: 3 },
+      { name: 'Houston', coords: [-95.3698, 29.7604], days: 3 },
+      { name: 'Atlanta', coords: [-84.3879, 33.7490], days: 3 },
+      { name: 'Nashville', coords: [-86.7844, 36.1627], days: 3 },
+      { name: 'Philadelphia', coords: [-75.1652, 39.9526], days: 3 },
+      { name: 'Foxborough', coords: [-71.2662, 42.0654], days: 3 },
+      { name: 'East Rutherford', coords: [-74.0776, 40.8128], days: 3 },
+      { name: 'Chicago', coords: [-87.6298, 41.8781], days: 3 },
+      { name: 'Detroit', coords: [-83.0458, 42.3314], days: 2 },
+      { name: 'Pittsburgh', coords: [-79.9959, 40.4406], days: 2 },
+      { name: 'Minneapolis', coords: [-93.2650, 44.9778], days: 2 },
+      { name: 'Cincinnati', coords: [-84.5120, 39.1031], days: 2 },
+      { name: 'Kansas City', coords: [-94.5786, 39.0997], days: 2 },
+      { name: 'Denver', coords: [-104.9903, 39.7392], days: 2 },
+      { name: 'Seattle', coords: [-122.3321, 47.6062], days: 2 },
+      { name: 'Santa Clara', coords: [-121.9552, 37.3541], days: 2 },
+      { name: 'Los Angeles', coords: [-118.2437, 34.0522], days: 5 }
+    ];
 
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -78,9 +126,8 @@ export default class Map extends React.Component {
                   stroke="#0e1724"
                   strokeWidth="1"
                   strokeOpacity="0.5"
-                  onClick={() => this.handleStateClick(d)}
                   onMouseEnter={(e) => {
-                    select(e.target).attr('fill', '#000');
+                    select(e.target).attr('fill', '#fff');
                   }}
                   onMouseOut={(e) => {
                     select(e.target).attr('fill', '#eee');
@@ -88,7 +135,24 @@ export default class Map extends React.Component {
                 />
               ))}
             </g>
+            {cities.map((city, index) => (
+              <circle
+                key={index}
+                cx={projection(city.coords)[0]}
+                cy={projection(city.coords)[1]}
+                r="5"
+                fill={city.days === 2 ? 'purple' : 'pink'}
+                onClick={() => this.handleCityClick(city)} // Add click event for the city
+              >
+                <title>{city.name}</title>
+              </circle>
+            ))}
           </svg>
+        )}
+        {selectedCity && (
+          <div className="city-details-popup">
+            <CityDetails city={selectedCity} onClose={this.handleCloseCityDetails} />
+          </div>
         )}
       </div>
     );
