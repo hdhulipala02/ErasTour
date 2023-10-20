@@ -54,6 +54,68 @@ const Map = () => {
     margin: 'auto',
   };
 
+  const folklore = '#ffd6e4'
+  const lover = '#ffd1c2'
+  const speaknow = '#ddfeff'
+  const evermore = '#fff5c2'
+  const taylorswift = '#deffe2'
+  const red = '#ffbaba'
+  const ninteen89 = '#dfc39d'
+  const fearless = '#f4d5fd'
+  const reputation = '#d4cfcf'
+
+  const stateColors = {
+    Alabama: fearless,
+    Arizona: speaknow,
+    Arkansas: ninteen89,
+    California: folklore,
+    Colorado: speaknow,
+    Connecticut: fearless,
+    Deleware: ninteen89,
+    Florida: speaknow,
+    Georgia: folklore,
+    Hawaii: speaknow,
+    Idaho: folklore,
+    Illinios: folklore,
+    Indiana: fearless,
+    Iowa: fearless,
+    Kansas: evermore,
+    Kentucky: fearless,
+    Lousiana: fearless,
+    Maine: speaknow,
+    Maryland: evermore,
+    Massachusetts: speaknow,
+    Michigan: folklore,
+    Minnesota: taylorswift,
+    Mississippi: folklore,
+    Missouri: folklore,
+    Montana: reputation,
+    Nebraska: red,
+    Nevada: evermore,
+    'New Hampshire': folklore,
+    'New Jersey': folklore,
+    'New Mexico': folklore,
+    'New York': folklore,
+    'North Carolina': folklore,
+    'North Dakota': evermore,
+    Ohio: evermore,
+    Oklahoma: speaknow,
+    Oregon: evermore,
+    Pennsylvania: speaknow,
+    'Rhode Island': lover,
+    'South Carolina': speaknow,
+    'South Dakota': folklore,
+    Tennessee: taylorswift,
+    Texas: taylorswift,
+    Utah: evermore,
+    Vermont: red,
+    Virginia: evermore,
+    Washington: folklore,
+    'West Virginia': evermore,
+    Wisconsin: speaknow,
+    Wyoming: evermore
+  };
+
   const cities = [
     { name: 'Glendale', coords: [-112.1859, 33.5387], days: 2 },
     { name: 'Las Vegas', coords: [-115.1398, 36.1699], days: 2 },
@@ -88,16 +150,16 @@ const Map = () => {
               <path
                 key={d.properties.NAME}
                 d={path(d)}
-                fill="#eee"
+                fill={stateColors[d.properties.NAME] || "#eee"}
                 stroke="#0e1724"
                 strokeWidth="1"
                 strokeOpacity="0.5"
-                onMouseEnter={(e) => {
-                  select(e.target).attr('fill', '#fff');
-                }}
-                onMouseOut={(e) => {
-                  select(e.target).attr('fill', '#eee');
-                }}
+                // onMouseEnter={(e) => {
+                //   select(e.target).attr('fill', '#fff');
+                // }}
+                // onMouseOut={(e) => {
+                //   select(e.target).attr('fill', '#eee');
+                // }}
               />
             ))}
           </g>
