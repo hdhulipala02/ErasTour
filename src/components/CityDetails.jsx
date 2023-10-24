@@ -1,10 +1,11 @@
 import React from 'react';
+import '../style.css'
 
 const CityDetails = ({ city, onClose }) => (
-    <div>
-        <h1>{city.name}</h1>
+    <div className='city-popup'>
+        <h1 className='city-name'>{city.name} Statistics</h1>
         <p>Days spent: {city.days}</p>
-        <button onClick={onClose}>Close</button>
+        <button className='city-button' onClick={onClose}>Close</button>
     </div>
 );
 

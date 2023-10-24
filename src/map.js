@@ -4,6 +4,7 @@ import { geoMercator, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import CityDetails from './components/CityDetails';
 import SingleStateMap from "./components/SingleStateMap";
+import './style.css';
 
 const Map = () => {
   const [selectedState, setSelectedState] = useState(null);
@@ -154,12 +155,12 @@ const Map = () => {
                 stroke="#0e1724"
                 strokeWidth="1"
                 strokeOpacity="0.5"
-                // onMouseEnter={(e) => {
-                //   select(e.target).attr('fill', '#fff');
-                // }}
-                // onMouseOut={(e) => {
-                //   select(e.target).attr('fill', '#eee');
-                // }}
+              // onMouseEnter={(e) => {
+              //   select(e.target).attr('fill', '#fff');
+              // }}
+              // onMouseOut={(e) => {
+              //   select(e.target).attr('fill', '#eee');
+              // }}
               />
             ))}
           </g>
