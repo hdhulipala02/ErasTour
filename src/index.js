@@ -13,7 +13,12 @@ class App extends Component {
 
   render() {
     return (
-      <Map name={this.state.name} />
+      <div className='canvas'>
+        <h1 className='title'>The Era's Tour</h1>
+        <div className='map-container'>
+          <Map name={this.state.name} />
+        </div>
+      </div>
     );
   }
 }
