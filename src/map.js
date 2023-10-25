@@ -55,15 +55,15 @@ const Map = () => {
     margin: 'auto',
   };
 
-  const folklore = '#ffd6e4'
-  const lover = '#ffd1c2'
-  const speaknow = '#ddfeff'
-  const evermore = '#fff5c2'
+  const folklore = '#ccc494'
+  const lover = '#ffd6e4'
+  const speaknow = '#e2b7ce'
+  const evermore = '#d97c28'
   const taylorswift = '#deffe2'
-  const red = '#ffbaba'
-  const ninteen89 = '#dfc39d'
-  const fearless = '#f4d5fd'
-  const reputation = '#d4cfcf'
+  const red = '#951e1a'
+  const ninteen89 = '#d6e9ff'
+  const fearless = '#f6ed95'
+  const reputation = '#2b2b2b'
 
   const stateColors = {
     Alabama: fearless,
@@ -140,6 +140,15 @@ const Map = () => {
     { name: 'Los Angeles', coords: [-118.2437, 34.0522], days: 5 }
   ];
 
+  function generateLegendItems(labels, colors) {
+    return labels.map((label, index) => (
+      <div className="legend-item" key={label}>
+        <div className="legend-color" style={{ backgroundColor: colors[index] }}></div>
+        <div>{label}</div>
+      </div>
+    ));
+  }  
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       {selectedState ? (
@@ -187,10 +196,21 @@ const Map = () => {
         </svg>
       )}
       {selectedCity && (
-        <div className="city-details-popup">
+        <div className="city-details-popup" style={{ position: 'absolute', top: 'calc(100vh - 200px)', right: '0' }}>
           <CityDetails city={selectedCity} onClose={handleCloseCityDetails} />
         </div>
       )}
+      <div className="legend">
+      <div className="legend-column">
+        {generateLegendItems(['Folklore', 'Lover', 'Speak Now'], [folklore, lover, speaknow])}
+      </div>
+      <div className="legend-column">
+        {generateLegendItems(['Red', '1989', 'Reputation'], [red, ninteen89, reputation])}
+      </div>
+      <div className="legend-column">
+        {generateLegendItems(['Evermore', 'Taylor Swift', 'Fearlesss'], [evermore, taylorswift, fearless])}
+      </div>
+      </div>
     </div>
   );
 };
