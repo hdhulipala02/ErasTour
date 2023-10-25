@@ -11,17 +11,6 @@ const Map = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCity, setSelectedCity] = useState(null);
 
-  // const handleStateClick = (state) => {
-  //   const imageUrls = {
-  //     California: 'https://example.com/california.jpg',
-  //     Texas: 'https://example.com/texas.jpg',
-  //     // Add URLs for other states
-  //   };
-
-  //   setSelectedState(state);
-  //   setImageUrl(imageUrls[state.properties.NAME]);
-  // };
-
   const handleCityClick = (city) => {
     setSelectedCity(city);
   };
@@ -77,12 +66,12 @@ const Map = () => {
     Georgia: folklore,
     Hawaii: speaknow,
     Idaho: folklore,
-    Illinios: folklore,
+    Illinois: folklore,
     Indiana: fearless,
     Iowa: fearless,
     Kansas: evermore,
     Kentucky: fearless,
-    Lousiana: fearless,
+    Louisiana: fearless,
     Maine: speaknow,
     Maryland: evermore,
     Massachusetts: speaknow,
@@ -164,12 +153,6 @@ const Map = () => {
                 stroke="#0e1724"
                 strokeWidth="1"
                 strokeOpacity="0.5"
-              // onMouseEnter={(e) => {
-              //   select(e.target).attr('fill', '#fff');
-              // }}
-              // onMouseOut={(e) => {
-              //   select(e.target).attr('fill', '#eee');
-              // }}
               />
             ))}
           </g>
