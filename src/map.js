@@ -61,7 +61,7 @@ const Map = () => {
     California: folklore,
     Colorado: speaknow,
     Connecticut: fearless,
-    Deleware: ninteen89,
+    Delaware: ninteen89,
     Florida: speaknow,
     Georgia: folklore,
     Hawaii: speaknow,
