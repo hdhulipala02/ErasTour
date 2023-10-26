@@ -10,6 +10,7 @@ const Map = () => {
   const [selectedState, setSelectedState] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCity, setSelectedCity] = useState(null);
+  const [highlightedState, setHighlightedState] = useState(null);
 
   const handleCityClick = (city) => {
     setSelectedCity(city);
@@ -390,6 +391,26 @@ const Map = () => {
     ));
   }  
 
+    // Function to adjust color slightly
+  const adjustColor = (color, amount) => {
+    // Parse the color value
+    let r = parseInt(color.slice(1, 3), 16);
+    let g = parseInt(color.slice(3, 5), 16);
+    let b = parseInt(color.slice(5, 7), 16);
+
+    // Adjust the color slightly
+    r = Math.min(255, Math.max(0, r + amount));
+    g = Math.min(255, Math.max(0, g + amount));
+    b = Math.min(255, Math.max(0, b + amount));
+
+    // Convert back to hexadecimal
+    const rHex = r.toString(16).padStart(2, '0');
+    const gHex = g.toString(16).padStart(2, '0');
+    const bHex = b.toString(16).padStart(2, '0');
+
+    return `#${rHex}${gHex}${bHex}`;
+  };
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       {selectedState ? (
@@ -397,17 +418,22 @@ const Map = () => {
       ) : (
         <svg width={width} height={height} style={svgStyle}>
           <g className="geojson-layer">
-            {filteredFeatures.map((d) => (
-              <path
-                key={d.properties.NAME}
-                d={path(d)}
-                fill={stateColors[d.properties.NAME] || "#eee"}
-                stroke="#0e1724"
-                strokeWidth="1"
-                strokeOpacity="0.5"
-              />
-            ))}
-          </g>
+          {filteredFeatures.map((d) => {
+          const baseColor = stateColors[d.properties.NAME] || "#eee";
+          return (
+            <path
+              key={d.properties.NAME}
+              d={path(d)}
+              fill={highlightedState === d.properties.NAME ? adjustColor(stateColors[d.properties.NAME], 30) : stateColors[d.properties.NAME] || "#eee"}
+              stroke={highlightedState === d.properties.NAME ? adjustColor(stateColors[d.properties.NAME], 100) : "#0e1724"}
+              strokeWidth={highlightedState === d.properties.NAME ? "10" : "1"}
+              strokeOpacity="0.5"
+              onMouseEnter={() => setHighlightedState(d.properties.NAME)}
+              onMouseLeave={() => setHighlightedState(null)}
+            />
+          );
+        })}
+        </g>
           {cities.map((city, index) => (
             <circle
               key={index}
