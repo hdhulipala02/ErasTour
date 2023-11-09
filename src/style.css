@@ -15,11 +15,11 @@
 }
 
 .bottom-right {
-  position: absolute; 
+  position: absolute;
   right: 100%;
   top: 100%;
   left: 65%;
-  transform: translate(500%, 500%); 
+  transform: translate(500%, 500%);
 }
 
 .map-container {
@@ -54,6 +54,24 @@
   border-radius: 10%;
 }
 
+.night-button {
+  background-color: #DCABE4;
+  font-family: 'Limelight', sans-serif;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  padding: 5px 5px;
+  margin: 0.25em;
+  border-radius: 10%;
+}
+
+.night-button:hover {
+  cursor: pointer;
+}
+
 /* Define the legend style */
 .legend {
   position: absolute;
@@ -66,9 +84,12 @@
   border-radius: 10px;
   display: flex;
 }
+
 .legend-column {
-  flex: 1; /* Equal width for each column */
-  margin-right: 10px; /* Adjust the spacing between columns */
+  flex: 1;
+  /* Equal width for each column */
+  margin-right: 10px;
+  /* Adjust the spacing between columns */
 }
 
 /* Style for each legend item (color box and text) */
