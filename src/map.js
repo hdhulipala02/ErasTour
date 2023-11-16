@@ -439,9 +439,9 @@ const Map = () => {
     let b = parseInt(color.slice(5, 7), 16);
 
     // Adjust the color slightly
-    r = Math.min(255, Math.max(0, r + amount));
-    g = Math.min(255, Math.max(0, g + amount));
-    b = Math.min(255, Math.max(0, b + amount));
+    r = Math.min(255, Math.max(0, r - 50));
+    g = Math.min(255, Math.max(0, g - 50));
+    b = Math.min(255, Math.max(0, b - 50));
 
     // Convert back to hexadecimal
     const rHex = r.toString(16).padStart(2, '0');
@@ -466,7 +466,6 @@ const Map = () => {
                   d={path(d)}
                   fill={highlightedState === d.properties.NAME ? adjustColor(stateColors[d.properties.NAME], 30) : stateColors[d.properties.NAME] || "#eee"}
                   stroke={highlightedState === d.properties.NAME ? adjustColor(stateColors[d.properties.NAME], 100) : "#0e1724"}
-                  strokeWidth={highlightedState === d.properties.NAME ? "10" : "1"}
                   strokeOpacity="0.5"
                   onMouseEnter={() => setHighlightedState(d.properties.NAME)}
                   onMouseLeave={() => setHighlightedState(null)}
