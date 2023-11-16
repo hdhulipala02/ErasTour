@@ -36,6 +36,9 @@
 }
 
 .city-popup {
+  position: fixed;
+  top: 10px; 
+  right: 10px;
   padding: 10px;
   background-color: #D9D9D9;
   border-radius: 10%;
