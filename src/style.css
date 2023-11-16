@@ -19,7 +19,8 @@
   right: 100%;
   top: 100%;
   left: 65%;
-  transform: translate(500%, 500%);
+  transform: translate(500%, 1000%);
+  white-space: nowrap;
 }
 
 .map-container {
