@@ -69,7 +69,8 @@ const Map = () => {
     "Speak Now": '#e2b7ce',
     "1989": '#d6e9ff',
     "Reputation": '#2b2b2b',
-    "Lover": '#ffd6e4',
+    // "Lover": '#ffd6e4',
+    "Lover": '#AA336A',
     "Folklore": '#ccc494',
     "Evermore": '#d97c28',
     "Midnights": '#00008B', // Placeholder, replace with the actual color code for "Midnights"
@@ -82,7 +83,7 @@ const Map = () => {
 
   useEffect(() => {
     // Fetch heatmap data within the effect
-    generateHeatMap('Fearless', '2008')
+    generateHeatMap('Folklore', '2002')
       .then(result => {
         setStateColors(result); // Update state with heatmap data
       })
@@ -183,14 +184,14 @@ const Map = () => {
   
 
   // stateColors = generateHeatMap('Fearless', '2008'); // Or with any album and year you want to test
-  generateHeatMap('Fearless', '2008')
-  .then(result => {
-    stateColors = result; // Assign the result to stateColors variable
-    console.log(stateColors); // Process the heatmap data here
-  })
-  .catch(error => {
-    console.error(error); // Handle errors here
-  });
+  // generateHeatMap('Lover', '2022')
+  // .then(result => {
+  //   stateColors = result; // Assign the result to stateColors variable
+  //   console.log(stateColors); // Process the heatmap data here
+  // })
+  // .catch(error => {
+  //   console.error(error); // Handle errors here
+  // });
 
   const updateHeatmap = () => {
     const stateColors = {
