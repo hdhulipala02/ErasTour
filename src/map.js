@@ -192,6 +192,75 @@ const Map = () => {
     console.error(error); // Handle errors here
   });
 
+  const updateHeatmap = () => {
+    const stateColors = {
+      Alabama: fearless,
+      Arizona: speaknow,
+      Arkansas: ninteen89,
+      California: folklore,
+      Colorado: speaknow,
+      Connecticut: fearless,
+      Delaware: ninteen89,
+      Florida: speaknow,
+      Georgia: folklore,
+      Hawaii: speaknow,
+      Idaho: folklore,
+      Illinois: folklore,
+      Indiana: fearless,
+      Iowa: fearless,
+      Kansas: evermore,
+      Kentucky: fearless,
+      Louisiana: fearless,
+      Maine: speaknow,
+      Maryland: evermore,
+      Massachusetts: speaknow,
+      Michigan: folklore,
+      Minnesota: taylorswift,
+      Mississippi: folklore,
+      Missouri: folklore,
+      Montana: reputation,
+      Nebraska: red,
+      Nevada: evermore,
+      'New Hampshire': folklore,
+      'New Jersey': folklore,
+      'New Mexico': folklore,
+      'New York': folklore,
+      'North Carolina': folklore,
+      'North Dakota': evermore,
+      Ohio: evermore,
+      Oklahoma: speaknow,
+      Oregon: evermore,
+      Pennsylvania: speaknow,
+      'Rhode Island': lover,
+      'South Carolina': speaknow,
+      'South Dakota': folklore,
+      Tennessee: taylorswift,
+      Texas: taylorswift,
+      Utah: evermore,
+      Vermont: red,
+      Virginia: evermore,
+      Washington: folklore,
+      'West Virginia': evermore,
+      Wisconsin: speaknow,
+      Wyoming: evermore
+    };
+    if (heatmapToggle) {
+      generateHeatMap(selectedAlbum, selectedYear)
+        .then(result => {
+          setStateColors(result);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else {
+      setStateColors(stateColors); // Use the default stateColors when heatmapToggle is off
+    }
+  };
+
+  useEffect(() => {
+    updateHeatmap();
+  }, [heatmapToggle, selectedAlbum, selectedYear]);
+
 /////////////////////////////////////////////////////////////////////////// HEATMAP END 
 
   const cities = [
