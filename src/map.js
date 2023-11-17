@@ -11,6 +11,12 @@ const Map = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCity, setSelectedCity] = useState(null);
   const [highlightedState, setHighlightedState] = useState(null);
+  const [selectedAlbum, setSelectedAlbum] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+  const [heatmapToggle, setHeatmapToggle] = useState(false);
+
+  const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearlesss'];
+  const years = ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
 
   const handleCityClick = (city) => {
     setSelectedCity(city);
@@ -511,6 +517,45 @@ const Map = () => {
           {generateLegendItems(['Evermore', 'Taylor Swift', 'Fearlesss'], [evermore, taylorswift, fearless])}
         </div>
       </div>
+
+      <div className="popularity">
+      <label htmlFor="albumDropdown">Select Album:</label>
+      <select
+        id="albumDropdown"
+        value={selectedAlbum}
+        onChange={(e) => setSelectedAlbum(e.target.value)}
+      >
+        {albums.map((album) => (
+            <option key={album} value={album}>
+              {album}
+            </option>
+          ))}
+      </select>
+
+      <label htmlFor="yearDropdown">Select Year:</label>
+      <select
+        id="yearDropdown"
+        value={selectedYear}
+        onChange={(e) => setSelectedYear(e.target.value)}
+      >
+        {years.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+      </select>
+
+      <label className="toggle-label">
+        Heatmap: 
+        <input
+          type="checkbox"
+          id="heatmapToggle"
+          checked={heatmapToggle}
+          onChange={() => setHeatmapToggle(!heatmapToggle)}
+        />
+      </label>
+    </div>
+      
     </div>
   );
 };
