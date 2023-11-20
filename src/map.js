@@ -18,7 +18,7 @@ const Map = () => {
   const [heatmapToggle, setHeatmapToggle] = useState(false);
 
   const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearlesss'];
-  const years = ["2008", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
+  const years = ["2008", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
   const handleCityClick = (city) => {
     setSelectedCity(city);
