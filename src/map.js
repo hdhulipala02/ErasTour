@@ -254,6 +254,106 @@ const Map = () => {
 
 /////////////////////////////////////////////////////////////////////////// HEATMAP END 
 
+/////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP START
+useEffect(() => {
+  // Fetch heatmap data within the effect
+  generatePopMap('2015')
+    .then(result => {
+      setStateColors(result); // Update state with heatmap data
+    })
+    .catch(error => {
+      console.error(error); // Handle errors here
+    });
+}, []); // Run once on initial component mount
+
+function generatePopMap(year) {
+  var file = "Most_Popular_Album.csv";
+  var popMap = { //2023 map
+    Alabama: fearless,
+    Arizona: speaknow,
+    Arkansas: ninteen89,
+    California: folklore,
+    Colorado: speaknow,
+    Connecticut: fearless,
+    Delaware: ninteen89,
+    Florida: speaknow,
+    Georgia: folklore,
+    Hawaii: speaknow,
+    Idaho: folklore,
+    Illinois: folklore,
+    Indiana: fearless,
+    Iowa: fearless,
+    Kansas: evermore,
+    Kentucky: fearless,
+    Louisiana: fearless,
+    Maine: speaknow,
+    Maryland: evermore,
+    Massachusetts: speaknow,
+    Michigan: folklore,
+    Minnesota: taylorswift,
+    Mississippi: folklore,
+    Missouri: folklore,
+    Montana: reputation,
+    Nebraska: red,
+    Nevada: evermore,
+    'New Hampshire': folklore,
+    'New Jersey': folklore,
+    'New Mexico': folklore,
+    'New York': folklore,
+    'North Carolina': folklore,
+    'North Dakota': evermore,
+    Ohio: evermore,
+    Oklahoma: speaknow,
+    Oregon: evermore,
+    Pennsylvania: speaknow,
+    'Rhode Island': lover,
+    'South Carolina': speaknow,
+    'South Dakota': folklore,
+    Tennessee: taylorswift,
+    Texas: taylorswift,
+    Utah: evermore,
+    Vermont: red,
+    Virginia: evermore,
+    Washington: folklore,
+    'West Virginia': evermore,
+    Wisconsin: speaknow,
+    Wyoming: evermore
+  };
+
+  // Create a Promise for the fetch operation
+  return new Promise((resolve, reject) => {
+    // Fetch the CSV file
+    fetch(file)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(csvData => {
+        const parsedData = d3.csvParseRows(csvData);
+
+        const yearIndex = parsedData[0].indexOf(year);
+        for (let i = 1; i < parsedData.length; i++) {
+          const row = parsedData[i];
+          const state = row[0].trim(); 
+          const albumForYear = row[yearIndex].trim(); 
+          popMap[state] = albumColors[albumForYear]; 
+
+        } 
+      
+        resolve(popMap); 
+        
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+        reject(error); // Reject the Promise if there's an error
+      });
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END 
+
   const cities = [
     {
       name: 'Glendale', coords: [-112.1859, 33.5387], days: 2,
