@@ -17,8 +17,8 @@ const Map = () => {
   const [selectedYear, setSelectedYear] = useState('');
   const [heatmapToggle, setHeatmapToggle] = useState(false);
 
-  const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearlesss'];
-  const years = ["2008", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
+  const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearless'];
+  const years = ["2008","2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
   const handleCityClick = (city) => {
     setSelectedCity(city);
@@ -182,16 +182,6 @@ const Map = () => {
     });
   }
   
-
-  // stateColors = generateHeatMap('Fearless', '2008'); // Or with any album and year you want to test
-  // generateHeatMap('Lover', '2022')
-  // .then(result => {
-  //   stateColors = result; // Assign the result to stateColors variable
-  //   console.log(stateColors); // Process the heatmap data here
-  // })
-  // .catch(error => {
-  //   console.error(error); // Handle errors here
-  // });
 
   const updateHeatmap = () => {
     const stateColors = {
