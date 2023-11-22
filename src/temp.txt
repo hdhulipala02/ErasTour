@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import data from './taylor_swift_spotify.csv'; // Import your local CSV file
+
 const RadialChart = ({ column, selectedAlbum }) => {
   const chartRef = useRef();
 
@@ -12,11 +13,11 @@ const RadialChart = ({ column, selectedAlbum }) => {
     const outerRadius = Math.min(width, height) / 2;
 
     const svg = d3.select(chartRef.current)
-      .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', `translate(${width / 2},${height / 2})`);
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom) // Adjust the height to accommodate the chart
+    .append('g')
+    .attr('transform', `translate(${width / 2},${height / 2})`);
 
     const albumColors = {
       "Taylor Swift": '#34f3ff',
@@ -28,7 +29,7 @@ const RadialChart = ({ column, selectedAlbum }) => {
       "Lover": '#AA336A',
       "folklore": '#ccc494',
       "evermore": '#d97c28',
-      "Midnights": '#00008B',
+      "Midnights": '#00008B', // Placeholder, replace with the actual color code for "Midnights"
       // Add more albums and colors as needed
     };
 
@@ -46,22 +47,41 @@ const RadialChart = ({ column, selectedAlbum }) => {
         .range([innerRadius, outerRadius])
         .domain([0, d3.max(filteredData, d => +d[column])]);
 
-      const arcGenerator = d3.arc()
-        .innerRadius(innerRadius)
-        .outerRadius(d => y(+d[column]))
-        .startAngle(d => x(d.name))
-        .endAngle(d => x(d.name) + x.bandwidth())
-        .padAngle(0.01)
-        .padRadius(innerRadius);
+      svg.selectAll('path')
+        .data(filteredData)
+        .enter()
+        .append('path')
+        .attr('fill', (d) => albumColors[selectedAlbum])
+        .attr('d', d3.arc()
+          .innerRadius(innerRadius)
+          .outerRadius(d => y(+d[column]))
+          .startAngle(d => x(d.name))
+          .endAngle(d => x(d.name) + x.bandwidth())
+          .padAngle(0.01)
+          .padRadius(innerRadius));
 
-      const labels = svg.selectAll(null)
+      // Add labels (song names) to each bar
+      // svg.selectAll(null)
+      //   .data(filteredData)
+      //   .enter()
+      //   .append('text')
+      //   .attr('transform', d => {
+      //     const angle = x(d.name) - Math.PI / 2;
+      //     const labelRadius = outerRadius + 10; // Distance from the center
+      //     const xPosition = Math.cos(angle) * labelRadius;
+      //     const yPosition = Math.sin(angle) * labelRadius;
+      //     return `translate(${xPosition}, ${yPosition}) rotate(${angle * (180 / Math.PI)})`;
+      //   })
+      //   .attr('text-anchor', d => (x(d.name) - Math.PI) % (2 * Math.PI) < Math.PI ? 'end' : 'start')
+      //   .attr('font-size', '10px')
+      //   .text(d => d.name);
+      svg.selectAll(null)
         .data(filteredData)
         .enter()
         .append('text')
-        .attr('opacity', 0)
         .attr('transform', d => {
           const angle = x(d.name) - Math.PI / 2;
-          const labelRadius = outerRadius + 20;
+          const labelRadius = outerRadius + 20; // Distance from the center
           const xPosition = Math.cos(angle) * labelRadius;
           const yPosition = Math.sin(angle) * labelRadius;
           return `translate(${xPosition}, ${yPosition})`;
@@ -70,25 +90,7 @@ const RadialChart = ({ column, selectedAlbum }) => {
         .attr('dominant-baseline', 'middle')
         .attr('font-size', '10px')
         .text(d => d.name);
-
-      const bars = svg.selectAll(null)
-        .data(filteredData)
-        .enter()
-        .append('path')
-        .attr('fill', (d) => albumColors[selectedAlbum])
-        .attr('d', arcGenerator);
-
-      bars.on('mouseover', function (event, d) {
-        const barIndex = filteredData.findIndex(item => item === d);
-        svg.selectAll('text')
-          .filter((label, index) => index === barIndex)
-          .attr('opacity', 1);
-      }).on('mouseout', function (event, d) {
-        const barIndex = filteredData.findIndex(item => item === d);
-        svg.selectAll('text')
-          .filter((label, index) => index === barIndex)
-          .attr('opacity', 0);
-      });
+  
     });
   }, [column, selectedAlbum]);
 
