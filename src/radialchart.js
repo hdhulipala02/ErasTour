@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import data from './taylor_swift_spotify.csv'; // Import your local CSV file
 
 const RadialChart = () => {
   const chartRef = useRef();
@@ -20,19 +21,17 @@ const RadialChart = () => {
       .append('g')
       .attr('transform', `translate(${width / 2},${height / 2 + 100})`);
 
-    d3.csv('https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum.csv').then(data => {
-      // X scale
+    d3.csv(data).then(data => { // Use the imported local CSV data
+      // Your existing code remains mostly the same...
       const x = d3.scaleBand()
         .range([0, 2 * Math.PI])
         .align(0)
-        .domain(data.map(d => d.Country));
+        .domain(data.map(d => d.name)); // Change 'Country' to 'name'
 
-      // Y scale
       const y = d3.scaleRadial()
         .range([innerRadius, outerRadius])
-        .domain([0, 10000]);
+        .domain([0, d3.max(data, d => +d.energy)]); // Change 'Value' to 'energy'
 
-      // Add bars
       svg.selectAll('path')
         .data(data)
         .enter()
@@ -40,9 +39,9 @@ const RadialChart = () => {
         .attr('fill', '#69b3a2')
         .attr('d', d3.arc()
           .innerRadius(innerRadius)
-          .outerRadius(d => y(d['Value']))
-          .startAngle(d => x(d.Country))
-          .endAngle(d => x(d.Country) + x.bandwidth())
+          .outerRadius(d => y(d.energy)) // Change 'Value' to 'energy'
+          .startAngle(d => x(d.name)) // Change 'Country' to 'name'
+          .endAngle(d => x(d.name) + x.bandwidth()) // Change 'Country' to 'name'
           .padAngle(0.01)
           .padRadius(innerRadius));
     });
