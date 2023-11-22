@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Map from './map';
-import RadialChart from './radialchart';
+import AlbumRadialChart from './albumradialchart'; // Check if the import path is correct
+
 
 import './style.css';
 
@@ -22,8 +23,11 @@ class App extends Component {
           <div className='map-container'>
             <Map name={this.state.name} />
           </div>
-          <div className='radialchart-container'>
+          {/* <div className='radialchart-container'>
             <RadialChart name={this.state.name} />
+          </div> */}
+          <div className='radialchart-container'>
+            <AlbumRadialChart /> {/* Render the AlbumRadialChart component here */}
           </div>
         </div>
       </div>

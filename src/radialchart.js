@@ -2,50 +2,64 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import data from './taylor_swift_spotify.csv'; // Import your local CSV file
 
-const RadialChart = () => {
+const RadialChart = ({ column, selectedAlbum }) => {
   const chartRef = useRef();
 
   useEffect(() => {
-    // set the dimensions and margins of the graph
-    const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-    const width = 460 - margin.left - margin.right;
-    const height = 460 - margin.top - margin.bottom;
+    const margin = { top: 5, right: 5, bottom: 5, left: 5 };
+    const width = 500 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
     const innerRadius = 80;
     const outerRadius = Math.min(width, height) / 2;
 
-    // append the svg object to the chartRef
     const svg = d3.select(chartRef.current)
-      .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', `translate(${width / 2},${height / 2 + 100})`);
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom) // Adjust the height to accommodate the chart
+    .append('g')
+    .attr('transform', `translate(${width / 2},${height / 2})`);
 
-    d3.csv(data).then(data => { // Use the imported local CSV data
-      // Your existing code remains mostly the same...
+    const albumColors = {
+      "Fearless": '#f6ed95',
+      "Red": '#951e1a',
+      "Speak Now": '#e2b7ce',
+      "1989": '#d6e9ff',
+      "reputation": '#2b2b2b',
+      "Lover": '#AA336A',
+      "folklore": '#ccc494',
+      "evermore": '#d97c28',
+      "Midnights": '#00008B', // Placeholder, replace with the actual color code for "Midnights"
+      // Add more albums and colors as needed
+    };
+
+    d3.csv(data).then(csvData => {
+      const filteredData = csvData.filter(
+        d => d.album === selectedAlbum && !isNaN(parseFloat(d[column]))
+      );
+
       const x = d3.scaleBand()
         .range([0, 2 * Math.PI])
         .align(0)
-        .domain(data.map(d => d.name)); // Change 'Country' to 'name'
+        .domain(filteredData.map(d => d.name));
 
       const y = d3.scaleRadial()
         .range([innerRadius, outerRadius])
-        .domain([0, d3.max(data, d => +d.energy)]); // Change 'Value' to 'energy'
+        .domain([0, d3.max(filteredData, d => +d[column])]);
 
       svg.selectAll('path')
-        .data(data)
+        .data(filteredData)
         .enter()
         .append('path')
-        .attr('fill', '#69b3a2')
+        .attr('fill', (d) => albumColors[selectedAlbum])
         .attr('d', d3.arc()
           .innerRadius(innerRadius)
-          .outerRadius(d => y(d.energy)) // Change 'Value' to 'energy'
-          .startAngle(d => x(d.name)) // Change 'Country' to 'name'
-          .endAngle(d => x(d.name) + x.bandwidth()) // Change 'Country' to 'name'
+          .outerRadius(d => y(+d[column]))
+          .startAngle(d => x(d.name))
+          .endAngle(d => x(d.name) + x.bandwidth())
           .padAngle(0.01)
           .padRadius(innerRadius));
     });
-  }, []);
+  }, [column, selectedAlbum]);
 
   return (
     <div ref={chartRef}></div>
