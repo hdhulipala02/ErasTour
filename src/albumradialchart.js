@@ -44,7 +44,7 @@ const AlbumRadialChart = () => {
   return (
     <div>
       <div>
-        <label htmlFor="columnSelect">Select a Column:</label>
+        <label htmlFor="columnSelect">Select a Metric:</label>
         <select id="columnSelect" value={column} onChange={handleColumnChange}>
           {columns.map((col, index) => (
             <option key={index} value={col}>
@@ -70,7 +70,7 @@ const AlbumRadialChart = () => {
 
       {showChart && selectedAlbum && (
         <div>
-          <h2>Radar Chart for {selectedAlbum}</h2>
+          <h2>{column} of {selectedAlbum}</h2>
           <RadialChart key={`${selectedAlbum}_${column}`} column={column} selectedAlbum={selectedAlbum} />
         </div>
       )}
