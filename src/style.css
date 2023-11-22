@@ -1,6 +1,23 @@
+/* .canvas {
+  position: relative;
+} */
+
 .canvas {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.map-container {
+  order: 2; /* Set a lower order to move it above */
+}
+
+.radialchart-container {
+  order: 1; /* Set a higher order to move it below */
+}
+
+
 
 .title {
   font-family: 'Limelight', sans-serif;
@@ -20,12 +37,6 @@
   left: 65%;
   transform: translate(500%, 1000%);
   white-space: nowrap;
-}
-
-.map-container {
-  position: absolute;
-  top: 50%;
-  left: 1%;
 }
 
 .city-name {
