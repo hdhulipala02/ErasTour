@@ -1,51 +1,51 @@
 State,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023
-Alabama,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Alaska,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Arizona,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Arkansas,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-California,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Colorado,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Connecticut,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Delaware,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Florida,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Georgia,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Hawaii,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Idaho,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Illinois,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Indiana,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Iowa,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Kansas,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Kentucky,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Louisiana,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Maine,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Maryland,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Massachusetts,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Michigan,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Minnesota,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Mississippi,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Missouri,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Montana,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Nebraska,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Nevada,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-New Hampshire,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-New Jersey,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-New Mexico,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-New York,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-North Carolina,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-North Dakota,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Ohio,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Oklahoma,Speak Now,Speak Now,Red,Red,1989,Red,None,None,None,None,None,None,None,None
-Oregon,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Pennsylvania,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Rhode Island,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-South Carolina,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-South Dakota,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Tennessee,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Texas,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Utah,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Vermont,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Virginia,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Washington,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-West Virginia,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Wisconsin,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
-Wyoming,Speak Now,Speak Now,Red,Red,1989,1989,None,None,None,None,None,None,None,None
+Alabama,Speak Now,Speak Now,Red,Red,1989,1989,Fearless,Reputation,Reputation,Lover,None,Red,Red,None
+Alaska,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+Arizona,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Arkansas,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,Lover,Red,None
+California,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,1989
+Colorado,Speak Now,Speak Now,Red,Red,1989,1989,Speak Now,Reputation,Reputation,Lover,Folklore,Red,Lover,Red
+Connecticut,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,Reputation,Lover,Folklore,Red,Red,Lover
+Delaware,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+Florida,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,None
+Georgia,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,None
+Hawaii,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,Lover,None,None,None
+Idaho,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,None,Lover,None,Red,Red,None
+Illinois,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,1989
+Indiana,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Iowa,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,Reputation,Lover,None,Fearless,Red,Lover
+Kansas,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,Red,Lover,None,Red,Red,Lover
+Kentucky,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Evermore,Red,Red,None
+Louisiana,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,None,Lover,Folklore,Red,1989,None
+Maine,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,Reputation,Lover,None,Red,Red,None
+Maryland,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Massachusetts,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Michigan,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,None,Red,Red,Lover
+Minnesota,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,Reputation,Lover,Folklore,Red,Red,Lover
+Mississippi,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,None,Lover,None,Red,None,None
+Missouri,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,None,Lover,None,Red,Red,None
+Montana,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,Reputation,Lover,Folklore,None,None,1989
+Nebraska,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,Red,Red,Lover
+Nevada,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,Red,Red,None
+New Hampshire,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,None,Lover,None,Evermore,None,Lover
+New Jersey,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,Reputation,Lover,Folklore,Red,Red,1989
+New Mexico,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+New York,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Lover
+North Carolina,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,None
+North Dakota,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+Ohio,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Oklahoma,Speak Now,Speak Now,Red,Red,1989,Red,None,Reputation,Reputation,Lover,None,Red,None,None
+Oregon,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,Reputation,Lover,None,Red,Red,1989
+Pennsylvania,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Lover
+Rhode Island,Speak Now,Speak Now,Red,Red,1989,1989,Red,Reputation,None,Lover,Evermore,Red,Red,Lover
+South Carolina,Speak Now,Speak Now,Red,Red,1989,1989,Speak Now,Reputation,Speak Now,Lover,Folklore,Red,Evermore,None
+South Dakota,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+Tennessee,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Texas,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Red
+Utah,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,None,Red,Red,Lover
+Vermont,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+Virginia,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,None
+Washington,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Folklore,Lover
+West Virginia,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None
+Wisconsin,Speak Now,Speak Now,Red,Red,1989,1989,1989,Reputation,Reputation,Lover,Folklore,Red,Red,Lover
+Wyoming,Speak Now,Speak Now,Red,Red,1989,1989,None,Reputation,None,Lover,None,None,None,None

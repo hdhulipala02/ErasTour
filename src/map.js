@@ -257,7 +257,7 @@ const Map = () => {
 /////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP START
 useEffect(() => {
   // Fetch heatmap data within the effect
-  generatePopMap('2015')
+  generatePopMap('2023')
     .then(result => {
       setStateColors(result); // Update state with heatmap data
     })
@@ -335,13 +335,18 @@ function generatePopMap(year) {
 
         const yearIndex = parsedData[0].indexOf(year);
         for (let i = 1; i < parsedData.length; i++) {
-          const row = parsedData[i];
-          const state = row[0].trim(); 
-          const albumForYear = row[yearIndex].trim(); 
+          var row = parsedData[i];
+          var state = row[0].trim(); 
+          var albumForYear = row[yearIndex].trim(); 
+
+          if (albumForYear.toLowerCase() === "none") {
+            albumForYear = "#FFFFFF"; // Replace "None" with "White"
+          }
+
           popMap[state] = albumColors[albumForYear]; 
 
         } 
-      
+        
         resolve(popMap); 
         
       })
