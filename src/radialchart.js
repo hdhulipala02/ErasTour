@@ -54,7 +54,17 @@ const RadialChart = ({ column, selectedAlbum }) => {
         .padAngle(0.01)
         .padRadius(innerRadius);
 
-      const labels = svg.selectAll(null)
+      
+
+      const bars = svg.selectAll(null)
+        .data(filteredData)
+        .enter()
+        .append('path')
+        .attr('fill', (d) => albumColors[selectedAlbum])
+        .attr('d', arcGenerator);
+      
+      
+       const labels = svg.selectAll(null)
         .data(filteredData)
         .enter()
         .append('text')
@@ -68,15 +78,8 @@ const RadialChart = ({ column, selectedAlbum }) => {
         })
         .attr('text-anchor', 'middle')
         .attr('dominant-baseline', 'middle')
-        .attr('font-size', '10px')
+        .attr('font-size', '20px')
         .text(d => d.name);
-
-      const bars = svg.selectAll(null)
-        .data(filteredData)
-        .enter()
-        .append('path')
-        .attr('fill', (d) => albumColors[selectedAlbum])
-        .attr('d', arcGenerator);
 
       bars.on('mouseover', function (event, d) {
         const barIndex = filteredData.findIndex(item => item === d);
