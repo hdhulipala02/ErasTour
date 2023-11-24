@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import geojson from './geojson.json';
 import { geoMercator, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import CityDetails from './components/CityDetails';
 import SingleStateMap from "./components/SingleStateMap";
 import './style.css';
+import * as d3 from 'd3';
+import {csv} from "d3"
 
 const Map = () => {
   const [selectedState, setSelectedState] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCity, setSelectedCity] = useState(null);
+  const [highlightedState, setHighlightedState] = useState(null);
+  const [selectedAlbum, setSelectedAlbum] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+  const [heatmapToggle, setHeatmapToggle] = useState(false);
 
-  // const handleStateClick = (state) => {
-  //   const imageUrls = {
-  //     California: 'https://example.com/california.jpg',
-  //     Texas: 'https://example.com/texas.jpg',
-  //     // Add URLs for other states
-  //   };
-
-  //   setSelectedState(state);
-  //   setImageUrl(imageUrls[state.properties.NAME]);
-  // };
+  const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearless'];
+  const years = ["2008","2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
   const handleCityClick = (city) => {
     setSelectedCity(city);
@@ -60,10 +58,10 @@ const Map = () => {
   const speaknow = '#e2b7ce'
   const evermore = '#d97c28'
   const taylorswift = '#deffe2'
-  const red = '#951e1a'
-  const ninteen89 = '#d6e9ff'
-  const fearless = '#f6ed95'
-  const reputation = '#2b2b2b'
+  const red = '#ffbaba'
+  const ninteen89 = '#dfc39d'
+  const fearless = '#f4d5fd'
+  const reputation = '#d4cfcf'
 
   const stateColors = {
     Alabama: fearless,
@@ -72,17 +70,17 @@ const Map = () => {
     California: folklore,
     Colorado: speaknow,
     Connecticut: fearless,
-    Deleware: ninteen89,
+    Delaware: ninteen89,
     Florida: speaknow,
     Georgia: folklore,
     Hawaii: speaknow,
     Idaho: folklore,
-    Illinios: folklore,
+    Illinois: folklore,
     Indiana: fearless,
     Iowa: fearless,
     Kansas: evermore,
     Kentucky: fearless,
-    Lousiana: fearless,
+    Louisiana: fearless,
     Maine: speaknow,
     Maryland: evermore,
     Massachusetts: speaknow,
@@ -117,6 +115,45 @@ const Map = () => {
     Wyoming: evermore
   };
 
+  // Create a Promise for the fetch operation
+  return new Promise((resolve, reject) => {
+    // Fetch the CSV file
+    fetch(file)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(csvData => {
+        const parsedData = d3.csvParseRows(csvData);
+
+        const yearIndex = parsedData[0].indexOf(year);
+        for (let i = 1; i < parsedData.length; i++) {
+          var row = parsedData[i];
+          var state = row[0].trim(); 
+          var albumForYear = row[yearIndex].trim(); 
+
+          if (albumForYear.toLowerCase() === "none") {
+            albumForYear = "#FFFFFF"; // Replace "None" with "White"
+          }
+
+          popMap[state] = albumColors[albumForYear]; 
+
+        } 
+        
+        resolve(popMap); 
+        
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+        reject(error); // Reject the Promise if there's an error
+      });
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END 
+
   const cities = [
     { name: 'Glendale', coords: [-112.1859, 33.5387], days: 2 },
     { name: 'Las Vegas', coords: [-115.1398, 36.1699], days: 2 },
@@ -140,15 +177,6 @@ const Map = () => {
     { name: 'Los Angeles', coords: [-118.2437, 34.0522], days: 5 }
   ];
 
-  function generateLegendItems(labels, colors) {
-    return labels.map((label, index) => (
-      <div className="legend-item" key={label}>
-        <div className="legend-color" style={{ backgroundColor: colors[index] }}></div>
-        <div>{label}</div>
-      </div>
-    ));
-  }  
-
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       {selectedState ? (
@@ -156,22 +184,20 @@ const Map = () => {
       ) : (
         <svg width={width} height={height} style={svgStyle}>
           <g className="geojson-layer">
-            {filteredFeatures.map((d) => (
-              <path
-                key={d.properties.NAME}
-                d={path(d)}
-                fill={stateColors[d.properties.NAME] || "#eee"}
-                stroke="#0e1724"
-                strokeWidth="1"
-                strokeOpacity="0.5"
-              // onMouseEnter={(e) => {
-              //   select(e.target).attr('fill', '#fff');
-              // }}
-              // onMouseOut={(e) => {
-              //   select(e.target).attr('fill', '#eee');
-              // }}
-              />
-            ))}
+            {filteredFeatures.map((d) => {
+              const baseColor = stateColors[d.properties.NAME] || "#eee";
+              return (
+                <path
+                  key={d.properties.NAME}
+                  d={path(d)}
+                  fill={highlightedState === d.properties.NAME ? adjustColor(stateColors[d.properties.NAME], 30) : stateColors[d.properties.NAME] || "#eee"}
+                  stroke={highlightedState === d.properties.NAME ? adjustColor(stateColors[d.properties.NAME], 100) : "#0e1724"}
+                  strokeOpacity="0.5"
+                  onMouseEnter={() => setHighlightedState(d.properties.NAME)}
+                  onMouseLeave={() => setHighlightedState(null)}
+                />
+              );
+            })}
           </g>
           {cities.map((city, index) => (
             <circle
@@ -200,17 +226,6 @@ const Map = () => {
           <CityDetails city={selectedCity} onClose={handleCloseCityDetails} />
         </div>
       )}
-      <div className="legend">
-      <div className="legend-column">
-        {generateLegendItems(['Folklore', 'Lover', 'Speak Now'], [folklore, lover, speaknow])}
-      </div>
-      <div className="legend-column">
-        {generateLegendItems(['Red', '1989', 'Reputation'], [red, ninteen89, reputation])}
-      </div>
-      <div className="legend-column">
-        {generateLegendItems(['Evermore', 'Taylor Swift', 'Fearlesss'], [evermore, taylorswift, fearless])}
-      </div>
-      </div>
     </div>
   );
 };
