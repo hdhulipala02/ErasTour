@@ -26,6 +26,12 @@
   color: black;
 }
 
+.surprise {
+  font-family: 'Limelight', sans-serif;
+  font-size: 0.9em;
+  color: black;
+}
+
 .city-popup {
   padding: 10px;
   background-color: #D9D9D9;

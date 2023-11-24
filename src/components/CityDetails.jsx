@@ -6,7 +6,7 @@ const CityDetails = ({ city, onClose }) => (
         <h1 className='city-name'>{city.name} Statistics</h1>
         <p>Days spent: {city.days}</p>
         <div>
-        <h3>Surprise Songs:</h3>
+        <h1 className='surprise'>Surprise Songs:</h1>
         {city.shows.map((show, index) => (
             <div key={index}>
             <strong>{show.date}:</strong> {show.surpriseSongs.join(' and ')}
