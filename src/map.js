@@ -63,7 +63,214 @@ const Map = () => {
   const fearless = '#f4d5fd'
   const reputation = '#d4cfcf'
 
-  const stateColors = {
+  const albumColors = {
+    "Fearless": '#f6ed95',
+    "Red": '#951e1a',
+    "Speak Now": '#e2b7ce',
+    "1989": '#d6e9ff',
+    "Reputation": '#2b2b2b',
+    // "Lover": '#ffd6e4',
+    "Lover": '#AA336A',
+    "Folklore": '#ccc494',
+    "Evermore": '#d97c28',
+    "Midnights": '#00008B', // Placeholder, replace with the actual color code for "Midnights"
+    // Add more albums and colors as needed
+  };
+
+
+
+
+  /////////////////////////////////////////////////////////////////////////// HEATMAP START
+  const [stateColors, setStateColors] = useState({}); // Initialize state
+
+  useEffect(() => {
+    // Fetch heatmap data within the effect
+    generateHeatMap('Folklore', '2002')
+      .then(result => {
+        setStateColors(result); // Update state with heatmap data
+      })
+      .catch(error => {
+        console.error(error); // Handle errors here
+      });
+  }, []); // Run once on initial component mount
+  
+  function generateHeatMap(album, year) {
+    var file = "Popularity_Heatmap_CSVs/" + album + '-' + year + ".csv";
+    var baseColor = albumColors[album];
+    var myColorScale = d3.scaleLinear().range(["white", baseColor]).domain([0, 100]);
+    var heatmap = {
+      Alabama: fearless,
+      Arizona: speaknow,
+      Arkansas: ninteen89,
+      California: folklore,
+      Colorado: speaknow,
+      Connecticut: fearless,
+      Delaware: ninteen89,
+      Florida: speaknow,
+      Georgia: folklore,
+      Hawaii: speaknow,
+      Idaho: folklore,
+      Illinois: folklore,
+      Indiana: fearless,
+      Iowa: fearless,
+      Kansas: evermore,
+      Kentucky: fearless,
+      Louisiana: fearless,
+      Maine: speaknow,
+      Maryland: evermore,
+      Massachusetts: speaknow,
+      Michigan: folklore,
+      Minnesota: taylorswift,
+      Mississippi: folklore,
+      Missouri: folklore,
+      Montana: reputation,
+      Nebraska: red,
+      Nevada: evermore,
+      'New Hampshire': folklore,
+      'New Jersey': folklore,
+      'New Mexico': folklore,
+      'New York': folklore,
+      'North Carolina': folklore,
+      'North Dakota': evermore,
+      Ohio: evermore,
+      Oklahoma: speaknow,
+      Oregon: evermore,
+      Pennsylvania: speaknow,
+      'Rhode Island': lover,
+      'South Carolina': speaknow,
+      'South Dakota': folklore,
+      Tennessee: taylorswift,
+      Texas: taylorswift,
+      Utah: evermore,
+      Vermont: red,
+      Virginia: evermore,
+      Washington: folklore,
+      'West Virginia': evermore,
+      Wisconsin: speaknow,
+      Wyoming: evermore
+    };
+  
+    // Create a Promise for the fetch operation
+    return new Promise((resolve, reject) => {
+      // Fetch the CSV file
+      fetch(file)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(csvData => {
+          const parsedData = d3.csvParseRows(csvData);
+  
+          for (let i = 3; i < parsedData.length; i++) {
+            const row = parsedData[i];
+            if (row.length >= 2) {
+              const state = row[0].trim();
+              const value = parseInt(row[1]);
+              if (!isNaN(value)) {
+                heatmap[state] = myColorScale(value);
+              } else {
+                heatmap[state] = myColorScale(0);
+              }
+            }
+          }
+          resolve(heatmap); // Resolve the Promise with the updated heatmap
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+          reject(error); // Reject the Promise if there's an error
+        });
+    });
+  }
+  
+
+  const updateHeatmap = () => {
+    const stateColors = {
+      Alabama: fearless,
+      Arizona: speaknow,
+      Arkansas: ninteen89,
+      California: folklore,
+      Colorado: speaknow,
+      Connecticut: fearless,
+      Delaware: ninteen89,
+      Florida: speaknow,
+      Georgia: folklore,
+      Hawaii: speaknow,
+      Idaho: folklore,
+      Illinois: folklore,
+      Indiana: fearless,
+      Iowa: fearless,
+      Kansas: evermore,
+      Kentucky: fearless,
+      Louisiana: fearless,
+      Maine: speaknow,
+      Maryland: evermore,
+      Massachusetts: speaknow,
+      Michigan: folklore,
+      Minnesota: taylorswift,
+      Mississippi: folklore,
+      Missouri: folklore,
+      Montana: reputation,
+      Nebraska: red,
+      Nevada: evermore,
+      'New Hampshire': folklore,
+      'New Jersey': folklore,
+      'New Mexico': folklore,
+      'New York': folklore,
+      'North Carolina': folklore,
+      'North Dakota': evermore,
+      Ohio: evermore,
+      Oklahoma: speaknow,
+      Oregon: evermore,
+      Pennsylvania: speaknow,
+      'Rhode Island': lover,
+      'South Carolina': speaknow,
+      'South Dakota': folklore,
+      Tennessee: taylorswift,
+      Texas: taylorswift,
+      Utah: evermore,
+      Vermont: red,
+      Virginia: evermore,
+      Washington: folklore,
+      'West Virginia': evermore,
+      Wisconsin: speaknow,
+      Wyoming: evermore
+    };
+    if (heatmapToggle) {
+      generateHeatMap(selectedAlbum, selectedYear)
+        .then(result => {
+          setStateColors(result);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else {
+      setStateColors(stateColors); // Use the default stateColors when heatmapToggle is off
+    }
+  };
+
+  useEffect(() => {
+    updateHeatmap();
+  }, [heatmapToggle, selectedAlbum, selectedYear]);
+
+/////////////////////////////////////////////////////////////////////////// HEATMAP END 
+
+/////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP START
+useEffect(() => {
+  // Fetch heatmap data within the effect
+  generatePopMap('2023')
+    .then(result => {
+      setStateColors(result); // Update state with heatmap data
+    })
+    .catch(error => {
+      console.error(error); // Handle errors here
+    });
+}, []); // Run once on initial component mount
+
+function generatePopMap(year) {
+  var file = "Most_Popular_Album.csv";
+  var popMap = { //2023 map
     Alabama: fearless,
     Arizona: speaknow,
     Arkansas: ninteen89,
