@@ -77,7 +77,7 @@ const Map = () => {
     // Add more albums and colors as needed
   };
 
-
+  
   /////////////////////////////////////////////////////////////////////////// HEATMAP START
   const [stateColors, setStateColors] = useState({}); // Initialize state
 
@@ -359,6 +359,15 @@ function generatePopMap(year) {
 
 /////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END 
 
+function generateLegendItems(labels, colors) {
+  return labels.map((label, index) => (
+    <div className="legend-item" key={label}>
+      <div className="legend-color" style={{ backgroundColor: colors[index] }}></div>
+      <div>{label}</div>
+    </div>
+  ));
+}
+
 const adjustColor = (color) => {
   // Check if the color exists and is a string
   if (color && typeof color === 'string') {
@@ -455,8 +464,59 @@ const adjustColor = (color) => {
           <CityDetails city={selectedCity} onClose={handleCloseCityDetails} />
         </div>
       )}
+      <div className="legend">
+        <div className="legend-column">
+          {generateLegendItems(['Folklore', 'Lover', 'Speak Now'], [folklore, lover, speaknow])}
+        </div>
+        <div className="legend-column">
+          {generateLegendItems(['Red', '1989', 'Reputation'], [red, ninteen89, reputation])}
+        </div>
+        <div className="legend-column">
+          {generateLegendItems(['Evermore', 'Taylor Swift', 'Fearlesss'], [evermore, taylorswift, fearless])}
+        </div>
+      </div>
+
+      <div className="popularity">
+      <label htmlFor="albumDropdown">Select Album:</label>
+      <select
+        id="albumDropdown"
+        value={selectedAlbum}
+        onChange={(e) => setSelectedAlbum(e.target.value)}
+      >
+        {albums.map((album) => (
+            <option key={album} value={album}>
+              {album}
+            </option>
+          ))}
+      </select>
+
+      <label htmlFor="yearDropdown">Select Year:</label>
+      <select
+        id="yearDropdown"
+        value={selectedYear}
+        onChange={(e) => setSelectedYear(e.target.value)}
+      >
+        {years.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+      </select>
+
+      <label className="toggle-label">
+        Heatmap: 
+        <input
+          type="checkbox"
+          id="heatmapToggle"
+          checked={heatmapToggle}
+          onChange={() => setHeatmapToggle(!heatmapToggle)}
+        />
+      </label>
+    </div>
+      
     </div>
   );
 };
 
 export default Map;
+    
