@@ -78,8 +78,6 @@ const Map = () => {
   };
 
 
-
-
   /////////////////////////////////////////////////////////////////////////// HEATMAP START
   const [stateColors, setStateColors] = useState({}); // Initialize state
 
@@ -361,6 +359,30 @@ function generatePopMap(year) {
 
 /////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END 
 
+const adjustColor = (color) => {
+  // Check if the color exists and is a string
+  if (color && typeof color === 'string') {
+    // Parse the color value
+    let r = parseInt(color.slice(1, 3), 16);
+    let g = parseInt(color.slice(3, 5), 16);
+    let b = parseInt(color.slice(5, 7), 16);
+
+    // Adjust the color slightly
+    r = Math.min(255, Math.max(0, r - 50));
+    g = Math.min(255, Math.max(0, g - 50));
+    b = Math.min(255, Math.max(0, b - 50));
+
+    // Convert back to hexadecimal
+    const rHex = r.toString(16).padStart(2, '0');
+    const gHex = g.toString(16).padStart(2, '0');
+    const bHex = b.toString(16).padStart(2, '0');
+
+    return `#${rHex}${gHex}${bHex}`;
+  } else {
+    // Return a default color or handle the undefined case as needed
+    return '#000000'; // Replace with your default color or appropriate handling
+  }
+};
   const cities = [
     { name: 'Glendale', coords: [-112.1859, 33.5387], days: 2 },
     { name: 'Las Vegas', coords: [-115.1398, 36.1699], days: 2 },
