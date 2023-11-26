@@ -13,7 +13,7 @@ const CityDetails = ({ city, onClose }) => {
   return (
     <div className='city-popup'>
       <h1 className='city-name'>{city.name} Statistics</h1>
-      <p>Days spent: {city.days}</p>
+      <p>Days Performed: {city.days}</p>
       {selectedNight && (
         <div>
           <h3>Surprise Songs:</h3>
