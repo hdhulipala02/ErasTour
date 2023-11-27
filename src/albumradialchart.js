@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import RadialChart from './radialchart'; // Update the path to your RadialChart component
+import "./radialchart.css"
 
 const AlbumRadialChart = () => {
   const [column, setColumn] = useState('danceability');
-  const [selectedAlbum, setSelectedAlbum] = useState('');
-  const [showChart, setShowChart] = useState(false);
+  const [selectedAlbum, setSelectedAlbum] = useState('Taylor Swift');
+  const [showChart, setShowChart] = useState(true);
   const albums = [
     'Taylor Swift',
     'Fearless',
@@ -35,6 +36,7 @@ const AlbumRadialChart = () => {
 
   const handleAlbumChange = (e) => {
     setSelectedAlbum(e.target.value);
+    setShowChart(true)
   };
 
   const handleShowChart = () => {
@@ -42,9 +44,9 @@ const AlbumRadialChart = () => {
   };
 
   return (
-    <div>
-      <div>
-        <label htmlFor="columnSelect">Select a Metric:</label>
+    <div className="container">
+      <div className="select-container">
+        <label htmlFor="columnSelect" className="select-label">Select a Metric:</label>
         <select id="columnSelect" value={column} onChange={handleColumnChange}>
           {columns.map((col, index) => (
             <option key={index} value={col}>
@@ -54,8 +56,8 @@ const AlbumRadialChart = () => {
         </select>
       </div>
 
-      <div>
-        <label htmlFor="albumSelect">Select an Album:</label>
+      <div className="select-container">
+        <label htmlFor="albumSelect" className="select-label">Select an Album:</label>
         <select id="albumSelect" value={selectedAlbum} onChange={handleAlbumChange}>
           <option value="" disabled>Select an album</option>
           {albums.map((album, index) => (
@@ -66,10 +68,8 @@ const AlbumRadialChart = () => {
         </select>
       </div>
 
-      <button onClick={handleShowChart}>Show Radial Barchart</button>
-
       {showChart && selectedAlbum && (
-        <div>
+        <div className="radial-chart-container">
           <h2>{column} of {selectedAlbum}</h2>
           <RadialChart key={`${selectedAlbum}_${column}`} column={column} selectedAlbum={selectedAlbum} />
         </div>
