@@ -24,6 +24,20 @@ const Map = () => {
 
   const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearless'];
   const years = ["2008","2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
+  const capacities = [
+    "60000",
+    "65000",
+    "70000",
+    "75000",
+    "80000",
+    "85000",
+    "90000",
+    "95000",
+    "100000",
+    "105000",
+    "110000"
+  ];
+  
 
   const handleCityClick = (city) => {
     setSelectedCity(city);
@@ -1047,6 +1061,40 @@ useEffect(() => {
           {generateLegendItems(['Evermore', 'Taylor Swift', 'Fearlesss'], [evermore, taylorswift, fearless])}
         </div>
       </div>
+
+
+
+      <div className="popularity2">
+      <div>
+        <label className="label2">Venue Capacities</label>
+      </div>
+        <label htmlFor="yearDropdown">Select Year:</label>
+        <select
+          id="yearDropdown"
+          value={selectedCapacity}
+          onChange={(e) => setSelectedCapacity(e.target.value)}
+        >
+          {capacities.map((capacity) => (
+            <option key={capacity} value={capacity}>
+              {capacity}
+            </option>
+          ))}
+        </select>
+
+        <label className="toggle-label">
+        Venue Map: 
+        <input
+          type="checkbox"
+          id="heatmapToggle"
+          checked={venueToggle}
+          onChange={() => setVenueToggle(!venueToggle)}
+        />
+      </label>
+    </div>
+
+
+
+
 
       <div className="popularity1">
       <div>
