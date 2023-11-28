@@ -14,6 +14,7 @@ const CityDetails = ({ city, onClose }) => {
     <div className='city-popup'>
       <h1 className='city-name'>{city.name} Statistics</h1>
       <p>Days Performed: {city.days}</p>
+      <p>Total Number of Attendees: {city.attendance.toLocaleString()}</p>
       {selectedNight && (
         <div>
           <h3>Surprise Songs:</h3>

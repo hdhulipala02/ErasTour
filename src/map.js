@@ -361,7 +361,7 @@ function generatePopMap(year) {
 
   const cities = [
     {
-      name: 'Glendale', coords: [-112.1859, 33.5387], days: 2,
+      name: 'Glendale', coords: [-112.1859, 33.5387], days: 2, attendance: 157200,
       shows: [
         {
           date: 'March 17',
@@ -374,7 +374,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Las Vegas', coords: [-115.1398, 36.1699], days: 2,
+      name: 'Las Vegas', coords: [-115.1398, 36.1699], days: 2, attendance: 143670,
       shows: [
         {
           date: 'March 24',
@@ -387,7 +387,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Arlington', coords: [-97.1091, 32.7357], days: 3,
+      name: 'Arlington', coords: [-97.1091, 32.7357], days: 3, attendance: 315000,
       shows: [
         {
           date: 'March 31',
@@ -404,7 +404,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Tampa', coords: [-82.4572, 27.9506], days: 3,
+      name: 'Tampa', coords: [-82.4572, 27.9506], days: 3, attendance: 225000,
       shows: [
         {
           date: 'April 13',
@@ -421,7 +421,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Houston', coords: [-95.3698, 29.7604], days: 3,
+      name: 'Houston', coords: [-95.3698, 29.7604], days: 3, attendance: '240,000',
       shows: [
         {
           date: 'April 21',
@@ -438,7 +438,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Atlanta', coords: [-84.3879, 33.7490], days: 3,
+      name: 'Atlanta', coords: [-84.3879, 33.7490], days: 3, attendance: 225000,
       shows: [
         {
           date: 'April 28',
@@ -455,7 +455,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Nashville', coords: [-86.7844, 36.1627], days: 3,
+      name: 'Nashville', coords: [-86.7844, 36.1627], days: 3, attendance: 207429,
       shows: [
         {
           date: 'May 5',
@@ -472,7 +472,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Philadelphia', coords: [-75.1652, 39.9526], days: 3,
+      name: 'Philadelphia', coords: [-75.1652, 39.9526], days: 3, attendance: 209688,
       shows: [
         {
           date: 'May 12',
@@ -489,7 +489,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Foxborough', coords: [-71.2662, 42.0654], days: 3,
+      name: 'Foxborough', coords: [-71.2662, 42.0654], days: 3, attendance: 197634,
       shows: [
         {
           date: 'May 19',
@@ -506,7 +506,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'East Rutherford', coords: [-74.0776, 40.8128], days: 3,
+      name: 'East Rutherford', coords: [-74.0776, 40.8128], days: 3, attendance: 265473,
       shows: [
         {
           date: 'May 26',
@@ -523,7 +523,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Chicago', coords: [-87.6298, 41.8781], days: 3,
+      name: 'Chicago', coords: [-87.6298, 41.8781], days: 3, attendance: 184500,
       shows: [
         {
           date: 'June 2',
@@ -540,7 +540,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Detroit', coords: [-83.0458, 42.3314], days: 2,
+      name: 'Detroit', coords: [-83.0458, 42.3314], days: 2, attendance: 156000,
       shows: [
         {
           date: 'June 9',
@@ -553,7 +553,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Pittsburgh', coords: [-79.9959, 40.4406], days: 2,
+      name: 'Pittsburgh', coords: [-79.9959, 40.4406], days: 2, attendance: 150000,
       shows: [
         {
           date: 'June 16',
@@ -566,7 +566,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Minneapolis', coords: [-93.2650, 44.9778], days: 2,
+      name: 'Minneapolis', coords: [-93.2650, 44.9778], days: 2, attendance: 146000,
       shows: [
         {
           date: 'June 23',
@@ -579,7 +579,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Cincinnati', coords: [-84.5120, 39.1031], days: 2,
+      name: 'Cincinnati', coords: [-84.5120, 39.1031], days: 2, attendance: 131030,
       shows: [
         {
           date: 'June 30',
@@ -592,7 +592,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Kansas City', coords: [-94.5786, 39.0997], days: 2,
+      name: 'Kansas City', coords: [-94.5786, 39.0997], days: 2, attendance: 152832,
       shows: [
         {
           date: 'July 7',
@@ -605,7 +605,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Denver', coords: [-104.9903, 39.7392], days: 2,
+      name: 'Denver', coords: [-104.9903, 39.7392], days: 2, attendance: 168000,
       shows: [
         {
           date: 'July 14',
@@ -618,7 +618,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Seattle', coords: [-122.3321, 47.6062], days: 2,
+      name: 'Seattle', coords: [-122.3321, 47.6062], days: 2, attendance: 144000,
       shows: [
         {
           date: 'July 22',
@@ -631,7 +631,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Santa Clara', coords: [-121.9552, 37.3541], days: 2,
+      name: 'Santa Clara', coords: [-121.9552, 37.3541], days: 2, attendance: 137000,
       shows: [
         {
           date: 'July 28',
@@ -644,7 +644,7 @@ function generatePopMap(year) {
       ]
     },
     {
-      name: 'Los Angeles', coords: [-118.2437, 34.0522], days: 6,
+      name: 'Los Angeles', coords: [-118.2437, 34.0522], days: 6, attendance: 601440,
       shows: [
         {
           date: 'August 3',

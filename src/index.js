@@ -22,7 +22,9 @@ class App extends Component {
   render() {
     return (
       <div className='canvas'>
-        <h1 className='title'>The Era's Tour: Shipman's Version</h1>
+        {!this.state.isRadialChartVisible && (
+          <h1 className='title'>The Era's Tour: Shipman's Version</h1>
+        )}
         <div className="box">
           <button className="toggle-button" onClick={this.toggleComponent}>
             {this.state.isRadialChartVisible ? 'Show Map' : 'Show Radial Chart'}
