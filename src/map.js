@@ -18,6 +18,7 @@ const Map = () => {
   const [heatmapToggle, setHeatmapToggle] = useState(false);
   const [popmapToggle, setHPopmapToggle] = useState(false);
   const [selectedYearPop, setSelectedYearPop] = useState('');
+  
 
   const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearless'];
   const years = ["2008","2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
@@ -433,7 +434,219 @@ useEffect(() => {
 }, [popmapToggle, selectedYearPop]);
 
 
-/////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END 
+/////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END
+
+/////////////////////////////////////////////////////////////////////////// VENUE SLIDER START
+useEffect(() => {
+  // Fetch heatmap data within the effect
+  generateVenueMap('60000')
+    .then(result => {
+      setStateColors(result); // Update state with heatmap data
+    })
+    .catch(error => {
+      console.error(error); // Handle errors here
+    });
+}, []); // Run once on initial component mount
+
+function generateVenueMap(venueCapacity) {
+  var file = "Most_Popular_Album.csv";
+  var map = {
+    Alabama: "#FFFFFF",
+    Arizona: "#FFFFFF",
+    Arkansas: "#FFFFFF",
+    California: "#FFFFFF",
+    Colorado: "#FFFFFF",
+    Connecticut: "#FFFFFF",
+    Delaware: "#FFFFFF",
+    Florida: "#FFFFFF",
+    Georgia: "#FFFFFF",
+    Hawaii: "#FFFFFF",
+    Idaho: "#FFFFFF",
+    Illinois: "#FFFFFF",
+    Indiana: "#FFFFFF",
+    Iowa: "#FFFFFF",
+    Kansas: "#FFFFFF",
+    Kentucky: "#FFFFFF",
+    Louisiana: "#FFFFFF",
+    Maine: "#FFFFFF",
+    Maryland: "#FFFFFF",
+    Massachusetts: "#FFFFFF",
+    Michigan: "#FFFFFF",
+    Minnesota: "#FFFFFF",
+    Mississippi: "#FFFFFF",
+    Missouri: "#FFFFFF",
+    Montana: "#FFFFFF",
+    Nebraska: "#FFFFFF",
+    Nevada: "#FFFFFF",
+    'New Hampshire': "#FFFFFF",
+    'New Jersey': "#FFFFFF",
+    'New Mexico': "#FFFFFF",
+    'New York': "#FFFFFF",
+    'North Carolina': "#FFFFFF",
+    'North Dakota': "#FFFFFF",
+    Ohio: "#FFFFFF",
+    Oklahoma: "#FFFFFF",
+    Oregon: "#FFFFFF",
+    Pennsylvania: "#FFFFFF",
+    'Rhode Island': "#FFFFFF",
+    'South Carolina': "#FFFFFF",
+    'South Dakota': "#FFFFFF",
+    Tennessee: "#FFFFFF",
+    Texas: "#FFFFFF",
+    Utah: "#FFFFFF",
+    Vermont: "#FFFFFF",
+    Virginia: "#FFFFFF",
+    Washington: "#FFFFFF",
+    'West Virginia': "#FFFFFF",
+    Wisconsin: "#FFFFFF",
+    Wyoming: "#FFFFFF"
+  };
+  
+
+  const venueData = {
+    "Arizona": 61500,
+    "Nevada": 65515,
+    "Texas": 65878,
+    "Florida": 68500,
+    "Georgia": 69896,
+    "Tennessee": 71835,
+    "Pennsylvania": 72000,
+    "Massachusetts": 73000,
+    "New Jersey": 75000,
+    "Illinois": 75000,
+    "Michigan": 75000,
+    "Pennsylvania": 76416,
+    "Minnesota": 78000,
+    "Ohio": 78600,
+    "Missouri": 80000,
+    "Colorado": 84000,
+    "Washington": 88491,
+    "California": 100240,
+    "California": 105000
+  };
+
+    // Create a Promise for the fetch operation
+    return new Promise((resolve, reject) => {
+      // Fetch the CSV file
+      fetch(file)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(csvData => {
+          const parsedData = d3.csvParseRows(csvData);
+  
+          for (const state in venueData) {
+            if (venueData.hasOwnProperty(state)) {
+                if (venueData[state] > venueCapacity) {
+                    map[state] = "#00008B"; // Dark blue hex code
+                } else {
+                  map[state] = "#FFFFFF"; // White hex code
+                }
+            }
+          }
+    
+          resolve(map); 
+          
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+          reject(error); // Reject the Promise if there's an error
+        });
+    });
+
+      
+}
+
+
+
+// // Example usage:
+// useEffect(() => {
+//   // Fetch heatmap data within the effect
+//   generateVenueMap(60000)
+//       .then(result => {
+//           setStateColors(result); // Update state with heatmap data
+//       })
+//       .catch(error => {
+//           console.error(error); // Handle errors here
+//       });
+// }, []); // Run once on initial component mount
+
+
+// const updateVenuemap = () => {
+//   const stateColors = {
+//     Alabama: fearless,
+//     Arizona: speaknow,
+//     Arkansas: ninteen89,
+//     California: folklore,
+//     Colorado: speaknow,
+//     Connecticut: fearless,
+//     Delaware: ninteen89,
+//     Florida: speaknow,
+//     Georgia: folklore,
+//     Hawaii: speaknow,
+//     Idaho: folklore,
+//     Illinois: folklore,
+//     Indiana: fearless,
+//     Iowa: fearless,
+//     Kansas: evermore,
+//     Kentucky: fearless,
+//     Louisiana: fearless,
+//     Maine: speaknow,
+//     Maryland: evermore,
+//     Massachusetts: speaknow,
+//     Michigan: folklore,
+//     Minnesota: taylorswift,
+//     Mississippi: folklore,
+//     Missouri: folklore,
+//     Montana: reputation,
+//     Nebraska: red,
+//     Nevada: evermore,
+//     'New Hampshire': folklore,
+//     'New Jersey': folklore,
+//     'New Mexico': folklore,
+//     'New York': folklore,
+//     'North Carolina': folklore,
+//     'North Dakota': evermore,
+//     Ohio: evermore,
+//     Oklahoma: speaknow,
+//     Oregon: evermore,
+//     Pennsylvania: speaknow,
+//     'Rhode Island': lover,
+//     'South Carolina': speaknow,
+//     'South Dakota': folklore,
+//     Tennessee: taylorswift,
+//     Texas: taylorswift,
+//     Utah: evermore,
+//     Vermont: red,
+//     Virginia: evermore,
+//     Washington: folklore,
+//     'West Virginia': evermore,
+//     Wisconsin: speaknow,
+//     Wyoming: evermore
+//   };
+
+//   if (venuemapToggle) {
+//     generateVenueMap(selectedYearPop)
+//       .then(result => {
+//         setStateColors(result);
+//       })
+//       .catch(error => {
+//         console.error(error);
+//       });
+//   } else {
+//     setStateColors(stateColors); // Use the default stateColors when heatmapToggle is off
+//   }
+// };
+
+// useEffect(() => {
+//   updateVenuemap();
+// }, [venueToggle, selectedYearPop]);
+
+
+/////////////////////////////////////////////////////////////////////////// VENUE SLIDER END 
 
   const cities = [
     {
