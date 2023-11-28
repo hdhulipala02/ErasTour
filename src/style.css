@@ -174,3 +174,42 @@
 .map-container {
   margin-top: 20px; /* Adjust as needed */
 }
+
+.popularity1 {
+  position: fixed;
+  bottom: 20px; /* Adjust the value as needed */
+  right: 640px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.popularity1 label {
+  font-family: 'Limelight', sans-serif;
+  color: #3c1d41;
+  font-size: 1em;
+  margin-right: 5px;
+}
+
+.label1 {
+  font-family: 'Limelight', sans-serif;
+  color: #DCABE4;
+  font-size: 1em;
+  margin-right: 5px;
+}
+
+.popularity1 select,
+.popularity1 input {
+  background-color: #fbdeff;
+  border: black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 10%;
+}

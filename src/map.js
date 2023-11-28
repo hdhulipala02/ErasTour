@@ -16,6 +16,8 @@ const Map = () => {
   const [selectedAlbum, setSelectedAlbum] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
   const [heatmapToggle, setHeatmapToggle] = useState(false);
+  const [popmapToggle, setHPopmapToggle] = useState(false);
+  const [selectedYearPop, setSelectedYearPop] = useState('');
 
   const albums = ['Folklore', 'Lover', 'Speak Now', 'Red', '1989', 'Reputation', 'Evermore', 'Taylor Swift', 'Fearless'];
   const years = ["2008","2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
@@ -320,6 +322,19 @@ function generatePopMap(year) {
     Wyoming: evermore
   };
 
+  if (popmapToggle) {
+    generatePopMap(selectedYearPop)
+      .then(result => {
+        setStateColors(result);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  } else {
+    setStateColors(stateColors); // Use the default stateColors when heatmapToggle is off
+  }
+  
+
   // Create a Promise for the fetch operation
   return new Promise((resolve, reject) => {
     // Fetch the CSV file
@@ -355,7 +370,13 @@ function generatePopMap(year) {
         reject(error); // Reject the Promise if there's an error
       });
   });
+
 }
+
+useEffect(() => {
+  updateHeatmap();
+}, [popmapToggle, selectedYearPop]);
+
 
 /////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP END 
 
@@ -771,7 +792,38 @@ function generatePopMap(year) {
         </div>
       </div>
 
+      <div className="popularity1">
+      <div>
+        <label className="label1">Popularity of Albums in Selected Year</label>
+      </div>
+        <label htmlFor="yearDropdown">Select Year:</label>
+        <select
+          id="yearDropdown"
+          value={selectedYearPop}
+          onChange={(e) => setSelectedYearPop(e.target.value)}
+        >
+          {years.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+
+        <label className="toggle-label">
+        Popularity Map: 
+        <input
+          type="checkbox"
+          id="heatmapToggle"
+          checked={popmapToggle}
+          onChange={() => setHPopmapToggle(!popmapToggle)}
+        />
+      </label>
+    </div>
+
       <div className="popularity">
+      <div>
+        <label className="label1">Popularity Distribution of Album in Selected Year</label>
+      </div>
       <label htmlFor="albumDropdown">Select Album:</label>
       <select
         id="albumDropdown"
