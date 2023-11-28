@@ -259,7 +259,7 @@ const Map = () => {
 /////////////////////////////////////////////////////////////////////////// MOST POPULAR ALBUM MAP START
 useEffect(() => {
   // Fetch heatmap data within the effect
-  generatePopMap('2023')
+  generatePopMap('2021')
     .then(result => {
       setStateColors(result); // Update state with heatmap data
     })
@@ -322,17 +322,6 @@ function generatePopMap(year) {
     Wyoming: evermore
   };
 
-  if (popmapToggle) {
-    generatePopMap(selectedYearPop)
-      .then(result => {
-        setStateColors(result);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  } else {
-    setStateColors(stateColors); // Use the default stateColors when heatmapToggle is off
-  }
   
 
   // Create a Promise for the fetch operation
@@ -373,8 +362,74 @@ function generatePopMap(year) {
 
 }
 
+const updatePopmap = () => {
+  const stateColors = {
+    Alabama: fearless,
+    Arizona: speaknow,
+    Arkansas: ninteen89,
+    California: folklore,
+    Colorado: speaknow,
+    Connecticut: fearless,
+    Delaware: ninteen89,
+    Florida: speaknow,
+    Georgia: folklore,
+    Hawaii: speaknow,
+    Idaho: folklore,
+    Illinois: folklore,
+    Indiana: fearless,
+    Iowa: fearless,
+    Kansas: evermore,
+    Kentucky: fearless,
+    Louisiana: fearless,
+    Maine: speaknow,
+    Maryland: evermore,
+    Massachusetts: speaknow,
+    Michigan: folklore,
+    Minnesota: taylorswift,
+    Mississippi: folklore,
+    Missouri: folklore,
+    Montana: reputation,
+    Nebraska: red,
+    Nevada: evermore,
+    'New Hampshire': folklore,
+    'New Jersey': folklore,
+    'New Mexico': folklore,
+    'New York': folklore,
+    'North Carolina': folklore,
+    'North Dakota': evermore,
+    Ohio: evermore,
+    Oklahoma: speaknow,
+    Oregon: evermore,
+    Pennsylvania: speaknow,
+    'Rhode Island': lover,
+    'South Carolina': speaknow,
+    'South Dakota': folklore,
+    Tennessee: taylorswift,
+    Texas: taylorswift,
+    Utah: evermore,
+    Vermont: red,
+    Virginia: evermore,
+    Washington: folklore,
+    'West Virginia': evermore,
+    Wisconsin: speaknow,
+    Wyoming: evermore
+  };
+
+  if (popmapToggle) {
+    generatePopMap(selectedYearPop)
+      .then(result => {
+        setStateColors(result);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  } else {
+    setStateColors(stateColors); // Use the default stateColors when heatmapToggle is off
+  }
+};
+
 useEffect(() => {
-  updateHeatmap();
+  updatePopmap();
 }, [popmapToggle, selectedYearPop]);
 
 
